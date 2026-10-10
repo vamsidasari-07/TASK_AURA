@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#eef2ff">
+    <meta name="description" content="Your personal liquid-glass productivity dashboard.">
+
+    <title>Task Aura</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="ambient ambient-three"></div>
+
+    <header class="header glass">
+        
+<a class="brand" href="#" aria-label="Taskora home">
+    <img
+        src="TASKAURA.jpg"
+        alt="Taskora checkmark logo"
+        class="logo"
+    >
+
+    <div>
+        <h1>TaskAura<span class="brand-dot">.</span></h1>
+        <p id="greeting">Your day, beautifully organized.</p>
+    </div>
+</a>
+
+        <button id="themeBtn" class="theme-btn" type="button"
+                aria-label="Switch to dark mode" aria-pressed="false">
+            <span id="themeIcon">☾</span>
+            <span id="themeLabel">Dark</span>
+        </button>
+    </header>
+
+    <main class="container">
+
+        <section class="hero glass">
+            <div class="hero-content">
+                <span class="eyebrow"><span class="live-dot"></span> YOUR PERSONAL WORKSPACE</span>
+                <h2>Make today<br><span class="gradient-text">extraordinary.</span></h2>
+                <p>One small step at a time. Your goals are closer than you think.</p>
+                <div class="hero-date">✦ <span id="todayDate">Loading date...</span></div>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+                <div class="orb orb-large">✦</div>
+                <div class="orb orb-small">✓</div>
+                <div class="orb orb-tiny">✧</div>
+            </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Task statistics">
+            <article class="stat-card glass">
+                <div class="stat-top">
+                    <span class="stat-label">Total tasks</span>
+                    <span class="stat-icon purple">▤</span>
+                </div>
+                <p class="stat-number" id="totalCount">0</p>
+                <p class="stat-note">Your daily plan</p>
+            </article>
+
+            <article class="stat-card glass">
+                <div class="stat-top">
+                    <span class="stat-label">In progress</span>
+                    <span class="stat-icon orange">◷</span>
+                </div>
+                <p class="stat-number" id="pendingCount">0</p>
+                <p class="stat-note">One step at a time</p>
+            </article>
+
+            <article class="stat-card glass">
+                <div class="stat-top">
+                    <span class="stat-label">Completed</span>
+                    <span class="stat-icon green">✓</span>
+                </div>
+                <p class="stat-number" id="completedCount">0</p>
+                <p class="stat-note">Look at you go!</p>
+            </article>
+        </section>
+
+        <section class="progress-card glass">
+            <div class="progress-heading">
+                <div>
+                    <span class="eyebrow">YOUR MOMENTUM</span>
+                    <h3>Daily progress</h3>
+                </div>
+                <span id="progressText" class="progress-percent">0%</span>
+            </div>
+            <div class="progress-track" role="progressbar"
+                 aria-label="Task completion progress"
+                 aria-valuemin="0" aria-valuemax="100"
+                 aria-valuenow="0" id="progressTrack">
+                <div id="progressBar"></div>
+            </div>
+            <p id="progressMessage">Your next accomplishment starts here.</p>
+        </section>
+
+        <section class="quote-section glass">
+            <div class="quote-symbol">“</div>
+            <div class="quote-content">
+                <span class="eyebrow">A LITTLE INSPIRATION</span>
+                <p id="quote">Small progress is still progress.</p>
+                <span id="quoteAuthor" class="quote-author">— FocusFlow</span>
+            </div>
+            <button id="newQuoteBtn" class="icon-button" type="button"
+                    aria-label="Show another quote" title="New quote">↻</button>
+        </section>
+
+        <section class="task-section glass">
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">PLAN WITH PURPOSE</span>
+                    <h2>Create a task<span class="heading-period">.</span></h2>
+                    <p class="section-subtitle">Give your next big thing a place to start.</p>
+                </div>
+                <div class="heading-icon">✎</div>
+            </div>
+
+            <form id="taskForm">
+                <div class="input-group task-input-group">
+                    <label for="taskInput">What needs doing?</label>
+                    <input type="text" id="taskInput"
+                           placeholder="e.g. Finish my project"
+                           maxlength="200" autocomplete="off" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="taskCategory">Category</label>
+                        <select id="taskCategory">
+                            <option value="Personal">🌱 Personal</option>
+                            <option value="Study">📚 Study</option>
+                            <option value="Work">💻 Work</option>
+                            <option value="Health">💚 Health</option>
+                            <option value="Other">✨ Other</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority">
+                            <option value="Normal">Normal</option>
+                            <option value="High">🔴 High</option>
+                            <option value="Low">🔵 Low</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="taskTime">Time (optional)</label>
+                        <input type="time" id="taskTime">
+                    </div>
+                </div>
+
+                <button type="submit" class="add-btn">
+                    <span>＋</span> Add to my day
+                </button>
+            </form>
+        </section>
+
+        <section class="list-section glass">
+            <div class="section-heading list-heading">
+                <div>
+                    <span class="eyebrow">YOUR DAILY PLAN</span>
+                    <h2>My tasks <span id="taskCount" class="count">0</span></h2>
+                </div>
+                <div class="list-actions">
+                    <button id="exportBtn" class="secondary-btn" type="button">↗ Export</button>
+                    <button id="clearBtn" class="clear-btn" type="button">Clear all</button>
+                </div>
+            </div>
+
+            <div class="search-wrap">
+                <span aria-hidden="true">⌕</span>
+                <input id="searchInput" type="search"
+                       placeholder="Search your tasks..."
+                       aria-label="Search tasks">
+            </div>
+
+            <div class="filter-row" aria-label="Filter tasks">
+                <button class="filter-btn active" type="button"
+                        data-filter="all" aria-pressed="true">All tasks</button>
+                <button class="filter-btn" type="button"
+                        data-filter="pending" aria-pressed="false">In progress</button>
+                <button class="filter-btn" type="button"
+                        data-filter="completed" aria-pressed="false">Completed</button>
+            </div>
+
+            <ul id="taskList" aria-label="Your task list"></ul>
+
+            <div id="emptyMessage" class="empty-state">
+                <div class="empty-icon">✧</div>
+                <h3 id="emptyTitle">A fresh start.</h3>
+                <p id="emptyText">Add your first task and make today count.</p>
+            </div>
+
+            <div class="list-footer">
+                <span>Made for focus, built for you.</span>
+                <button id="clearCompletedBtn" class="text-button" type="button">
+                    Clear completed
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-mark"> FocusFlow</div>
+        <p>Less clutter. More clarity. More you.</p>
+        <span>© 2026 · excuted by vamsi dasari</span>
+    </footer>
+
+</body>
+</html>
